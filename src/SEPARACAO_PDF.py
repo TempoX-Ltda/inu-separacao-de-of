@@ -82,6 +82,10 @@ args = parser.parse_args()
 for file in os.listdir(args.input_folder):
     logger.info('Processando o arquivo %s...', file)
 
+    if not file.endswith('.pdf'):
+        logger.info('Arquivo %s não é um PDF. Ignorando...', file)
+        continue
+
     with open(args.input_folder / file, "rb") as f:
         pdf = PdfReader(f)
 
