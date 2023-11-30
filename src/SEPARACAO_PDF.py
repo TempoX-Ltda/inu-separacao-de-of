@@ -9,10 +9,10 @@ from logging.handlers import RotatingFileHandler
 from argparse import ArgumentParser
 
 from pypdf import PdfReader, PdfWriter
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 
-log_file = tempfile.gettempdir() + '/send_ardis.log'
+log_file = tempfile.gettempdir() + '/separacao_de_of.log'
 
 formatter = logging.Formatter('%(asctime)s,%(msecs)d | %(name)s | %(levelname)s | %(message)s')
 
@@ -29,8 +29,6 @@ stdout_handler.setFormatter(formatter)
 
 logger.addHandler(file_log_handler)
 logger.addHandler(stdout_handler)
-
-logger.info('Arquivo de log: %s', log_file)
 
 parser = ArgumentParser(
     prog='separacao_de_of',
@@ -77,6 +75,8 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
+logger.info('Arquivo de log: %s', log_file)
 
 #SEPARA O PDF BRUTO EM PDFs UNICOS DE FRENTE E VERSO
 for file in os.listdir(args.input_folder):
